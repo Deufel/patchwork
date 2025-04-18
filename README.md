@@ -30,13 +30,17 @@ python vendor.py # pull latest CSS from source
 ```python
 from fasthtml.common import *
 hdrs = (
-    Link(rel="stylesheet", href="https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/ui/main.css"),
+    Link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/ui/main.css'),
 )
 
-app,rt = fast_app(hdrs=hdrs, Pico=False)
+app,rt = fast_app(hdrs=hdrs, pico=False)
 
 @rt
-def index(): return Div(P('Hello World!'), hx_get="/change")
-
-serve()
+def index(): return(
+    Title("Buttons"),
+    Main(H1("Lets see what some buttons look like"),
+         Button(cls="button outlined")("Outlined")
+         Button(cls="button elevated")("Elevated")
+        )
+)
 ```
