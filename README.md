@@ -1,7 +1,7 @@
-<img src="favicon.ico" alt="Icon Description">
 
-# Patchwork
+<img src="favicon.svg" alt="Project Icon Thread and Needle">
 
-![icon](favicon.png)
+#Patchwork
+
 
 CSS Vendor Library
