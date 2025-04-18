@@ -3,34 +3,27 @@
 
 CSS Vendor Library
 
-> Simple Library to pull the latest CSS for usign OpenProps UI
+> Simple Library to pull the latest CSS for using [OpenProps UI](https://open-props-ui.netlify.app/)
+> Some extra layout utilities
 
 ## Credit
-h/t [OpenProps UI](https://open-props-ui.netlify.app/)
-h/t [OpenProps](https://open-props.style/)
+ - [OpenProps UI](https://open-props-ui.netlify.app/)
+ - [OpenProps](https://open-props.style/)
 
-## How to Use
- 1A. Run the following command in your terminal:
-``` zsh
-python vendor.py # pull latest CSS from source
+## Note
+The CSS folder is compiled from various sources, see the vendor.py file for details.
+
+## QuickStart
+```bash
+python vendor.py # pull latest CSS from source load in to CSS folder
+python test.py  # confirm imports
 ```
-
- 1B. Use a CDN (not that fast)
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/ui/main.css">
-```
-
- 2.
-
- ```bash
- $ uv add python-fasthtml
- ```
 
 ```python
 from fasthtml.common import *
 hdrs = (
-    Link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/ui/main.css'),
+    Link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/ui/main.css'), # CDN
+    Link(rel='stylesheet', href='static/css/ui/main.css'), # Local
 )
 
 app,rt = fast_app(hdrs=hdrs, pico=False)
