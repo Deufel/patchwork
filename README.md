@@ -15,3 +15,7 @@ vendor = setup_openprops_vendor()
 results = vendor.sync_all()
 print(f"Results by source: {results}")
 ```
+
+This will pull the latest CSS for Open Props and OpenProps UI along with creating an empty custom directory for your project.
+
+You can you this by just pointign to the main.css as a CDN link.

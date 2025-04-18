@@ -199,8 +199,9 @@ def setup_openprops_vendor():
 
     return vendor
 
-# Example usage
+#Example usage
 if __name__ == "__main__":
+
     vendor = setup_openprops_vendor()
     results = vendor.sync_all()
     print(f"Results by source: {results}")
