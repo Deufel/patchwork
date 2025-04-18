@@ -10,13 +10,33 @@ h/t [OpenProps UI](https://open-props-ui.netlify.app/)
 h/t [OpenProps](https://open-props.style/)
 
 ## How to Use
+ 1A. Run the following command in your terminal:
 ``` zsh
-python vendor.py
+python vendor.py # pull latest CSS from source
 ```
 
-This will pull the latest CSS for Open Props and OpenProps UI along with creating an empty custom directory for your project.
+ 1B. Use a CDN (not that fast)
 
-
-'''html
+```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/ui/main.css">
-'''
+```
+
+ 2.
+
+ ```bash
+ $ uv add python-fasthtml
+ ```
+
+```python
+from fasthtml.common import *
+hdrs = (
+    Link(rel="stylesheet", href="https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/ui/main.css"),
+)
+
+app,rt = fast_app(hdrs=hdrs, Pico=False)
+
+@rt
+def index(): return Div(P('Hello World!'), hx_get="/change")
+
+serve()
+```

@@ -174,7 +174,7 @@ def setup_openprops_vendor():
 
     # OpenProps (Beta)
     vendor.add_source(
-        name="opbeta",
+        name="ui/opbeta",
         base_url="https://unpkg.com/open-props@2.0.0-beta.5",
         files=["index.css", "utilities.css"],
         directories={
