@@ -40,9 +40,9 @@ def index(): return(
 
 
 ## TODO
-[x] Landing page layout
-[ ] Theme
-[ ] dashboard layout
-[ ] Dialog Nav Bar
-[ ] Aside
-[ ] Footer drawer.. (was unstable on mobile with popover so maybe dont use?)
+- [x] Landing page layout
+- [ ] Theme
+- [ ] dashboard layout
+- [ ] Dialog Nav Bar
+- [ ] Aside
+- [ ] Footer drawer.. (was unstable on mobile with popover so maybe dont use?)
