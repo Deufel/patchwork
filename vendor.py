@@ -241,7 +241,7 @@ def setup_openprops_vendor():
         name="custom",  # This will be created as css/custom
         base_url=None,
         local_dir="custom",  # This is the source directory at project root
-        files=["layout.css", "utils.css", "main.css"]
+        files=["layout.css", "utils.css", "custom.css"]
     )
 
     return vendor

@@ -23,7 +23,9 @@ python test.py  # confirm imports
 from fasthtml.common import *
 hdrs = (
     Link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/ui/main.css'), # CDN
-    Link(rel='stylesheet', href='static/css/ui/main.css'), # Local
+    Link(rel='stylesheet', href='https://cdn.jsdelivr.net/gh/Deufel/patchwork@master/css/custom/custom.css'), # CDN
+    # Link(rel='stylesheet', href='static/css/ui/main.css'), # Local
+    # Link(rel='stylesheet', href='static/css/custom/custom.css'), # Local
 )
 
 app,rt = fast_app(hdrs=hdrs, pico=False)
