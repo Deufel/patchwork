@@ -1,5 +1,5 @@
 @layer layout {
-    body.dashboar  {
+    body.dashboard  {
     >header {grid-area: header;}
     >nav    {grid-area: nav;}
     >aside  {grid-area: aside;}
