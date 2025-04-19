@@ -1,0 +1,69 @@
+@layer layout {
+    body {
+    >header {grid-area: header;}
+    >nav    {grid-area: nav;}
+    >aside  {grid-area: aside;}
+    >main   {grid-area: main; anchor-name: --main-anchor; position: relative;  --main-anchor: self;}
+    >footer {grid-area: footer;}
+
+
+    >nav, >aside, >footer, >article { position: fixed; transition: opacity 300ms, transform 300ms;}
+    >nav, >aside {width: min(80vh, 300px); top: 0; }
+
+    /* Set consistent initial states with both opacity and transform */
+    /* >nav {position-anchor:--main-anchor; left: 0; right: auto; height: auto; opacity: 0; transform: translateX(-100%);} */
+    >aside {right: 0; left: auto; height: auto; opacity: 0; transform: translateX(100%);}
+    >footer {top: auto; width: 100%; height: auto; opacity: 0; transform: translateY(100%);}
+
+    >nav, >article {width:auto; height:auto;}
+
+    /* Apply consistent animations with both transform and opacity */
+    #nav:popover-open {opacity: 1; transform: translateX(0); @starting-style {opacity: 0; transform: translateX(-100%);}}
+    #aside:popover-open {opacity: 1; transform: translateX(0); @starting-style {opacity: 0; transform: translateX(100%);}}
+    #asideSettings:popover-open {opacity: 1; transform: translateX(0); @starting-style {opacity: 0; transform: translateX(100%);}}
+    #signin:popover-open {opacity: 1; transform: translateX(0); @starting-style {opacity: 0; transform: translateX(100%);}}
+    #footer:popover-open {opacity: 1; transform: translateY(0); @starting-style {opacity: 0; transform: translateY(100%);}}
+
+
+    #articleButton:popover-open {opacity: 1; transform: scale(1); @starting-style {opacity: 0; transform: scale(0.95);}}
+    #articleChip:popover-open {opacity: 1; transform: scale(1); @starting-style {opacity: 0; transform: scale(0.95);}}
+    #articleTabs:popover-open {opacity: 1; transform: scale(1); @starting-style {opacity: 0; transform: scale(0.95);}}
+    #articleToggle:popover-open {opacity: 1; transform: scale(1); @starting-style {opacity: 0; transform: scale(0.95);}}
+    #articleUtils:popover-open {opacity: 1; transform: scale(1); @starting-style {opacity: 0; transform: scale(0.95);}}
+    #articleAccordian:popover-open {opacity: 1; transform: scale(1); @starting-style {opacity: 0; transform: scale(0.95);}}
+
+    /* Position the article using main's anchor */
+    >nav,
+    >article { position: absolute; transition: opacity 300ms, transform 300ms; position-anchor: --main-anchor;
+        margin: 0; inset: auto; top: anchor(top); bottom: anchor(bottom); right: anchor(right); left: anchor(left); opacity: 0;
+        transform: scale(0.95); }
+    }
+
+    body.dashboard {
+    display: grid;
+    grid-template:
+        "  header  " auto
+        "  main    " 1fr
+        /  1fr;
+    min-height: 100svh;
+    }
+
+    @media (min-width: 768px) {
+    body.dashboard {
+        display: grid;
+        grid-template:
+        "  header  header  header" auto
+        "  nav     main    aside " 1fr
+        "  footer  footer  footer" auto
+        /  auto 1fr     auto;
+        min-height: 100svh;
+        }
+        nav {
+
+            all: revert;
+            grid-area: nav; /* Keep the grid positioning */
+        }
+
+    }
+
+    }

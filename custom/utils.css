@@ -1,0 +1,103 @@
+@layer utils {
+    :root {
+      /* Base configuration variables */
+      --grid-break-lg: 1024px;
+      --grid-break-md: 480px;
+
+      /* Default column counts for different breakpoints */
+      --grid-cols-lg: 5;
+      --grid-cols-md: 3;
+      --grid-cols-sm: 1;
+
+      /* Core calculation variables - don't change these directly */
+      --grid-viewport-context: 100vw;
+      --grid-container-context: 100%;
+      --grid-context: var(--grid-viewport-context);
+    }
+
+  :where(.dynamic-grid) {
+      /* Allow customization through inline style variables with fallbacks */
+      --cols-lg: var(--grid-cols-lg-custom, var(--grid-cols-lg));
+      --cols-md: var(--grid-cols-md-custom, var(--grid-cols-md));
+      --cols-sm: var(--grid-cols-sm-custom, var(--grid-cols-sm));
+
+      /* Breakpoints can also be customized */
+      --break-lg: var(--grid-break-lg-custom, var(--grid-break-lg));
+      --break-md: var(--grid-break-md-custom, var(--grid-break-md));
+
+      /* The complex grid calculation using our variables */
+      --grid-template: repeat(
+        auto-fill,
+        minmax(
+          clamp(
+            clamp(
+              calc(100% / calc(var(--cols-lg) + 1) + 0.1%),
+              calc(
+                calc(
+                  var(--break-lg) - var(--grid-context)
+                ) * 1e5
+              ),
+              calc(100% / calc(var(--cols-md) + 1) + 0.1%)
+            ),
+            calc(
+              calc(
+                var(--break-md) - var(--grid-context)
+              ) * 1e5
+            ),
+            calc(100% / calc(var(--cols-sm) + 1) + 0.1%)
+          ),
+          1fr
+        )
+      );
+
+      display: grid;
+      grid-template-columns: var(--grid-template);
+      gap: 0.5rem;
+    }
+
+  .hide-above-md { display: initial; }
+  @media screen and (min-width: 768px) { .hide-above-md { display: none; } }
+  :where(.gradient-text) { --_color-1-from: yellow; --_color-1-to:   red; --_color-2-from: purple; --_color-2-to:   indigo; @media (prefers-color-scheme: dark) { --_color-1-from: lime; --_color-1-to:   cyan; --_color-2-from: cyan; --_color-2-to:   deeppink; } }
+  :where(.debug){border: dashed red;}
+  :where(.rounded){--_rounded:initial;border-radius:var(--_rounded,var(--radius-2))}
+  :where(.rounded-match){overflow-clip-margin:content-box;overflow:clip}
+  :where(.padding){--_padding:initial;--_padding-inline:initial;--_padding-block:initial;padding-inline:var(--_padding-inline,var(--_padding,var(--size-2)));padding-block:var(--_padding-block,var(--_padding,var(--size-2)))}
+  :where(.margin){--_margin:initial;--_margin-inline:initial;--_margin-block:initial;margin-inline:var(--_margin-inline,var(--_margin,var(--size-2)));margin-block:var(--_margin-block,var(--_margin,var(--size-2)))}
+  :where(.flex){--_gap:initial;align-items:center;gap:var(--_gap,var(--size-1));display:flex}
+  :where(.flex-wrap){--_gap:initial;align-items:center;gap:var(--_gap,var(--size-3));flex-wrap:wrap;display:flex}
+  :where(.flex-center){--_gap:initial;place-content:center;align-items:center;gap:var(--_gap,var(--size-3));flex-wrap:wrap;display:flex}
+  :where(.grid){--_gap:initial;align-content:start;gap:var(--_gap,var(--size-3));display:grid}
+  :where(.pile){ display: grid; > * { grid-area: 1 / 1; } }
+  :where(.grid-ram-fit){repeat(auto-fit, minmax(min(0, 100%), 1fr));}
+  :where(.grid-ram-fill){repeat(auto-fill, minmax(min(0, 100%), 1fr));}
+  :where(.grid-ram-fit) :where(.grid-ram-fill){repeat(auto-fit, minmax(min(0, 100%), 1fr));}
+  :where(.flex-spread) { --_gap: initial; align-items: center; justify-content: space-between; gap: var(--_gap, var(--size-3)); display: flex; }
+  :where(.surface){--_surface:initial;background:var(--_surface,var(--surface-3))}
+  :where(.surface)  :where(.surface){--_surface:var(--surface-2)}
+  :where(.surface)  :where(.surface)  :where(.surface){--_surface:var(--surface-1)}
+  :where(.well){--_well:initial;background:var(--_well,var(--well-1))}
+  :where(.well)  :where(.well){--_well:var(--well-2)}
+  :where(.shadow){--_shadow:initial;box-shadow:var(--_shadow,var(--shadow-3))}
+  :where(.border){--_border-size:initial;--_border-style:initial;--_border-color:initial;border:var(--_border-size,var(--border-size-1))var(--_border-style,solid)var(--_border-color,var(--surface-2))}
+  :where(.border) :where(.surface){--_border-color:var(--surface-3)}
+  :where(.gradient-border) { border-width: var(--size-3); border-image-slice: 1; border-image-source: var(--conic-gradient-3); }
+  :where(.border-between-block) > * + * { border-block-start-width: var(--border); }
+  :where(.border-between-inline) > * + * { border-inline-start-width: var(--border); }
+  :where(.content){--_content:initial;max-inline-size:var(--_content,var(--size-content-2))}
+  :where(.scroll){--_scroll:initial;--_scroll-x:initial;--_scroll-y:initial;overflow:var(--_scroll-x,var(--_scroll,auto))var(--_scroll-y,var(--_scroll,auto))}
+  :where(.scroll-stable){overflow: scroll; scrollbar-gutter: stable both-edges;}
+  :where(.snaps){--_snaps:initial;scroll-snap-type:var(--_snaps,both)mandatory}
+  :where(.snap){--_snap:initial;scroll-snap-align:var(--_snap,center)}
+  :where(.snap-stop){scroll-snap-stop:always}
+  :where(.truncate){white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+  :where(.bold){--_bold:initial;font-weight:var(--_bold,var(--font-weight-700,bold))}
+  :where(.vh,.visually-hidden,.sr-only){block-size:0;inline-size:0;overflow:hidden}
+  :is(.vh,.visually-hidden,.sr-only){block-size:0;inline-size:0;overflow:hidden}
+  :where(.subtext){color:var(--text-2)}
+  :where(.text-xs){font-size:8px}
+  :where(.text-sm){font-size:var(--font-size-1)}
+  :where(.text-md){font-size:var(--font-size-3)}
+  :where(.text-lg){font-size:var(--font-size-5)}
+  :where(.square){aspect-ratio:1}
+  :where(.round){aspect-ratio:1;border-radius:var(--radius-round);overflow:clip}
+}
