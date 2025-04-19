@@ -1,0 +1,16 @@
+/* Define transition groups by purpose */
+::view-transition-old(page-change) {
+  animation: 300ms var(--ease-out-3) both slide-out-left;
+}
+
+::view-transition-new(page-change) {
+  animation: 300ms var(--ease-out-3) both slide-in-right;
+}
+
+::view-transition-old(modal-open) {
+  animation: 200ms var(--ease-3) both fade-out;
+}
+
+::view-transition-new(modal-open) {
+  animation: 300ms var(--ease-spring-3) both scale-up;
+}
