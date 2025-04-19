@@ -4,7 +4,7 @@
 CSS Vendor Library
 
 > Simple Library to pull the latest CSS for using [OpenProps UI](https://open-props-ui.netlify.app/)
-> Some extra layout utilities
+> with some extra layout utilities
 
 ## Credit
  - [OpenProps UI](https://open-props-ui.netlify.app/)
@@ -37,3 +37,12 @@ def index(): return(
         )
 )
 ```
+
+
+## TODO
+[x] Landing page layout
+[ ] Theme
+[ ] dashboard layout
+[ ] Dialog Nav Bar
+[ ] Aside
+[ ] Footer drawer.. (was unstable on mobile with popover so maybe dont use?)
