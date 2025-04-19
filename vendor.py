@@ -219,7 +219,7 @@ def setup_openprops_vendor():
     vendor.add_source(
         name="ui/opbeta",
         base_url="https://unpkg.com/open-props@2.0.0-beta.5",
-        files=["index.css", "utilities.css"],
+        files=["index.css", "utilities.css", "animate.css"],
         directories={
             "css": ["media-queries.css"],
             "css/sizes": ["media.css"],
